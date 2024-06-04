@@ -1,8 +1,4 @@
-//- React
-import React, { useState } from "react"
-
-//- Components
-import Divider from "./Divider"
+import React, { useState, useLayoutEffect } from "react"
 
 //- Icons
 import * as Icon from "../icons/icons"
@@ -11,48 +7,79 @@ interface FooterProps {
 	setMessages: React.Dispatch<React.SetStateAction<Array<{ user: string; bot: string }>>>
 }
 
+interface QuestionData {
+	question: string
+}
+
+interface ApiResponse {
+	data: QuestionData[]
+}
+
 export default function Footer<T extends FooterProps>(props: T) {
-	const [input, setInput] = useState<string>("")
+	const [questions, setQuestions] = useState<string[]>([])
+	const [selectedQuestion, setSelectedQuestion] = useState<string>("")
+
+	let baseUrl = typeof window !== "undefined" ? `${window.location.protocol}//${window.location.host}` : ""
+	let apiUrl = "/api/questionAndAnswer"
+
+	useLayoutEffect(() => {
+		fetch(baseUrl.concat(apiUrl))
+			.then(response => response.json())
+			.then((question: ApiResponse) => setQuestions(question.data.map((item: QuestionData) => item.question)))
+	}, [])
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
 
-		if (input.trim() === "") {
+		if (selectedQuestion.trim() === "") {
 			return
 		}
 
-		fetch(`http://localhost:3000/api/questionAndAnswer?question=${input}`)
+		fetch(`${baseUrl.concat(apiUrl)}?question=${selectedQuestion}`)
 			.then(response => response.json())
-			.then(data => props.setMessages(messages => [...messages, { user: input, bot: data.answer }]))
+			.then(data => props.setMessages(messages => [
+				...messages, {
+					user: selectedQuestion,
+					bot: data.answer
+				}]))
 
-		setInput("")
+		setSelectedQuestion("")
 	}
 
 	return (
-		<React.Fragment>
-			<Divider />
-
-			<form
-				onSubmit={handleSubmit}
-				className="flex justify-center items-center p-4"
+		<form
+			onSubmit={handleSubmit}
+			className="flex justify-center items-center p-4"
+		>
+			<button className="mr-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-cyan-400">
+				<Icon.Settings className="inline w-6 h-6" />
+			</button>
+			<select
+				className="bg-gray-100 cursor-pointer duration-200 p-1 rounded-l rounded-r w-full outline-none align-middle hover:opacity-60 active:opacity-40"
+				value={selectedQuestion}
+				onChange={event => setSelectedQuestion(event.target.value)}
 			>
-				<button className="mr-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-cyan-400">
-					<Icon.Settings className="inline w-6 h-6" />
-				</button>
-				<input
-					className="bg-gray-100 duration-200 p-1 rounded-l rounded-r w-full outline-none align-middle active:opacity-40"
-					type="text"
-					placeholder="Pergunte ao Chatbot"
-					value={input}
-					onChange={event => setInput(event.target.value)}
-				/>
-				<button
-					type="submit"
-					className="ml-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-lime-400"
+				<option
+					disabled
+					value=""
 				>
-					<Icon.Arrow className="inline w-6 h-6" />
-				</button>
-			</form>
-		</React.Fragment>
+					Pergunte ao Chatbot
+				</option>
+				{questions.map((question, index) => (
+					<option
+						key={index}
+						value={question}
+					>
+						{question}
+					</option>
+				))}
+			</select>
+			<button
+				type="submit"
+				className="ml-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-lime-400"
+			>
+				<Icon.Arrow className="inline w-6 h-6" />
+			</button>
+		</form>
 	)
 }
