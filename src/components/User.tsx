@@ -1,7 +1,11 @@
 //- Icons
 import * as Icon from "../icons/icons"
 
-export default function User() {
+interface UserProps {
+	question: string
+}
+
+export default function User<T extends UserProps>(props: T) {
 	return (
 		<div className="flex justify-start">
 			<section content="user">
@@ -10,7 +14,7 @@ export default function User() {
 					<span className="font-bold align-middle ml-2">Usuário</span>
 				</div>
 				<p className="text-left text-sm p-2 clear-both">
-					Id cillum aliqua consequat culpa eiusmod dolore ea ea amet dolore culpa dolor fugiat occaecat.
+					{props.question}
 				</p>
 			</section>
 		</div>

@@ -5,15 +5,19 @@ import React from "react"
 import User from "./User"
 import IA from "./IA"
 
-export default function Chat() {
+interface ChatProps {
+	messages: Array<{ user: string; bot: string }>
+}
+
+export default function Chat<T extends ChatProps>(props: T) {
 	return (
 		<div className="p-4 flex flex-col">
-			<User />
-			<IA />
-			<User />
-			<IA />
-			<User />
-			<IA />
+			{props.messages.map((message, index) => (
+				<React.Fragment key={index}>
+					<User question={message.user} />
+					<IA answer={message.bot} />
+				</React.Fragment>
+			))}
 		</div>
 	)
 }
