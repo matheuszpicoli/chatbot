@@ -7,11 +7,11 @@ interface QuestionLayoutProps {
 	setMessages: React.Dispatch<React.SetStateAction<Array<{ user: string; bot: string }>>>
 }
 
-interface QuestionData {
+type QuestionData = {
 	question: string
 }
 
-interface ApiResponse {
+type ApiResponse = {
 	data: QuestionData[]
 }
 
@@ -25,7 +25,10 @@ export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) 
 	useLayoutEffect(() => {
 		fetch(baseUrl.concat(apiUrl))
 			.then(response => response.json())
-			.then((question: ApiResponse) => setQuestions(question.data.map((item: QuestionData) => item.question)))
+			.then((question: ApiResponse) => {
+				const orderQuestions = question.data.map((item: QuestionData) => item.question).sort()
+				setQuestions(orderQuestions)
+			})
 	}, [])
 
 	const handleSubmit = (event: React.FormEvent) => {
