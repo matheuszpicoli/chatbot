@@ -1,7 +1,7 @@
-export default function Home() {
+export default function MPChatbot() {
 	return (
 		<div>
-			Hello World!
+			MP Chatbot
 		</div>
-	);
+	)
 }
