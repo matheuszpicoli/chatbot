@@ -3,7 +3,7 @@ import React, { useState, useLayoutEffect } from "react"
 //- Icons
 import * as Icon from "../icons/icons"
 
-interface FooterProps {
+interface QuestionLayoutProps {
 	setMessages: React.Dispatch<React.SetStateAction<Array<{ user: string; bot: string }>>>
 }
 
@@ -15,7 +15,7 @@ interface ApiResponse {
 	data: QuestionData[]
 }
 
-export default function Footer<T extends FooterProps>(props: T) {
+export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) {
 	const [questions, setQuestions] = useState<string[]>([])
 	const [selectedQuestion, setSelectedQuestion] = useState<string>("")
 

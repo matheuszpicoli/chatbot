@@ -4,7 +4,7 @@ import React, { useState } from "react"
 //- Components
 import Header from "@/components/Header"
 import Chat from "@/components/Chat"
-import Footer from "@/components/Footer"
+import QuestionLayout from "@/components/QuestionLayout"
 
 export default function MPChatbot() {
 	const [messages, setMessages] = useState<Array<{ user: string; bot: string }>>([])
@@ -18,7 +18,7 @@ export default function MPChatbot() {
 				<Chat messages={messages} />
 			</main>
 			<footer className="mt-4">
-				<Footer setMessages={setMessages} />
+				<QuestionLayout setMessages={setMessages} />
 			</footer>
 		</div>
 	)
