@@ -1,11 +1,11 @@
-type ThemeTemplate = {
+export type ThemeTemplate = {
 	text: string
 	background: string
 }
 
-type ThemeName = "light" | "dark"
+export type ThemeName = "light" | "dark"
 
-type Theme = {
+export type Theme = {
 	[theme in ThemeName]: ThemeTemplate
 }
 
@@ -16,6 +16,6 @@ export const themes: Theme = {
 	},
 	dark: {
 		text: "#fafafa",
-		background: "#2b2b2b"
+		background: "#202020"
 	}
 }

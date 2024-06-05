@@ -1,9 +1,16 @@
-//- CSS
+//- Tailwind CSS
 import "@/styles/globals.css"
+
+//- Themes
+import * as Theme from "@/hooks/ThemeContext"
 
 //- Next
 import type { AppProps } from "next/app"
 
-const App = <T extends AppProps>(Next: T) => <Next.Component {...Next.pageProps} />
-
-export default App
+export default function App<T extends AppProps>(Next: T) {
+	return (
+		<Theme.ThemeProvider>
+			<Next.Component {...Next.pageProps} />
+		</Theme.ThemeProvider>
+	)
+}

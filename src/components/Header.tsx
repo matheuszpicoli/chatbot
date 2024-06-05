@@ -10,7 +10,7 @@ import Divider from "./Divider"
 export default function Header() {
 	return (
 		<React.Fragment>
-			<h1 className="text-3xl font-medium text-center text-slate-900 align-middle">
+			<h1 className="text-3xl font-medium text-center align-middle">
 				<span className="font-bold">MP</span> Chatbot
 				<span className="font-normal">
 					<Icon.VerticalBar className="inline" />
