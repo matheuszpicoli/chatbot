@@ -1,3 +1,4 @@
+//- React
 import React, { useState, useLayoutEffect } from "react"
 
 //- Icons
@@ -26,7 +27,7 @@ export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) 
 		fetch(baseUrl.concat(apiUrl))
 			.then(response => response.json())
 			.then((question: ApiResponse) => {
-				const orderQuestions = question.data.map((item: QuestionData) => item.question).sort()
+				const orderQuestions = question.data.map((item: QuestionData) => item.question).slice().sort()
 				setQuestions(orderQuestions)
 			})
 	}, [])
@@ -34,9 +35,7 @@ export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
 
-		if (selectedQuestion.trim() === "") {
-			return
-		}
+		if (selectedQuestion.trim() === "") return
 
 		fetch(`${baseUrl.concat(apiUrl)}?question=${selectedQuestion}`)
 			.then(response => response.json())
