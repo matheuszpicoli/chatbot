@@ -1,40 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MP Chatbot 🤖
 
-## Getting Started
+### Link do projeto rodando na Vercel:
 
-First, run the development server:
+🔗 | [Clique aqui para ver o projeto em execução](https://mp-chatbot-sigma.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚨 Sobre
+
+- **MP Chatbot** é uma "inteligência artificial" bem simples mesmo, trata-se de um projeto pessoal onde eu criei uma API com algumas perguntas e respostas.
+
+- O usuário seleciona qual pergunta que ele deseja e o chatbot vê a resposta daquela pergunta e te responde.
+
+> **Observações:** todas as perguntas e respostas foram extraídas do site [Mentimeter](https://www.mentimeter.com/pt-BR/blog/audience-energizers/55-free-trivia-and-fun-quiz-question-templates).
+
+<div align="center">
+
+![MPChatbot](./documentation/documentationPhoto1.png)
+
+</div>
+
+---
+
+### Como funciona?
+- Ao acessar, você não verá nada, apenas uma caixa escrita "**Pergunte ao Chatbot**"... Ao clicar nessa caixa, uma série de perguntas irá aparecer:
+
+<div align="center">
+
+<small>Todas as perguntas estão ordenadas em ordem alfabética.</small>
+
+![Perguntas do Chatbot](./documentation/documentationPhoto2.png)
+
+</div>
+
+- Ao selecionar a pergunta, você precisa apertar no ícone de enviar que ficará com uma tonalidade verde. Ele fica localizado do lado direito da caixa de seleção de perguntas:
+
+<div align="center">
+
+![Ícone de enviar](./documentation/documentationPhoto3.png)
+
+</div>
+
+- Clicando no ícone de enviar, é feito exatamente isto, é enviada a pergunta para o chatbot responder. Sua pergunta irá aparecer e instântaneamente já é respondida pela "IA".
+
+<div align="center">
+
+![IA respondendo a sua pergunta](./documentation/documentationPhoto4.png)
+
+</div>
+
+- Você pode selecionar as perguntas uma por uma, mas pode perguntar para o chatbot quantas vezes você quiser. 
+
+---
+
+### Alterando o tema
+- Existem dois modos de cores, o **modo claro** e o **modo escuro**. Para alterar entre eles, basta ir no ícone de engrenagem que tem do lado esquerdo da caixa de seleção de perguntas. O ícone vai ficar com uma tonalidade azul ao ser clicado:
+
+<div align="center">
+
+![Alterando entre os temas disponíveis](./documentation/documentationPhoto5.png)
+
+</div>
+
+- Fazendo isso, dois botões irão aparecer logo abaixo da caixa de seleção de perguntas:
+
+<div align="center">
+
+![Botões de alterar o tema](./documentation/documentationPhoto6.png)
+
+</div>
+
+- Para alterar entre os modos, basta clicar em um dos botões, botão "**Modo claro**" caso queira o modo claro e botão "**Modo escuro**" caso queira o modo escuro. Aqui está uma representação de como fica a aplicação com o modo noturno:
+
+<div align="center">
+
+![Aplicação em modo escuro](./documentation/documentationPhoto7.png)
+
+</div>
+
+> **Observações:** o tema de cor definido pelo usuário fica salvo no local storage (armazenamento local) do navegador.
+
+## ⛏️ Ferramentas utilizadas
+
+- [Next JS](https://nextjs.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## 💻 Como executar o projeto na minha máquina?
+
+- Para executar esse projeto, não é necessário nenhuma configuração. Apenas baixe o zip do próprio GitHub ou clone o projeto.
+- Baixe as dependências com ```npm install``` (ou ```npm i```) na raíz da aplicação e execute o projeto com ```npm run dev```. Tudo isso dentro do seu terminal, pode ser o do seu sistema operacional ou da sua própria IDE.
+
+### Como alterar, remover ou adicionar novas perguntas para o Chatbot?
+
+- Vá até o caminho **_src/pages/api_** e procure o arquivo **_questionAndAnswer.ts_**, nesse arquivo, estão todas as perguntas e respostas da aplicação.
+
+- Para adicionar, remover ou alterar perguntas, procure uma constante chamada **_questionsAndAnswers_**, ela tem o seguinte formato:
+
+```TypeScript
+type ModelQuestionAndAnswer = {
+	question: string
+	answer: string
+}
+
+const questionsAndAnswers: ModelQuestionAndAnswer[] = [
+	{
+		question: "Pergunta.",
+		answer: "Resposta da pergunta."
+	}
+]
 ```
+#### Alterar perguntas
+- Basta procurar a pergunta que deseja alterar e mudar para a pergunta alterada, lembre também de mudar a resposta.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Remover perguntas
+- Apague as chaves que está ao redor da pergunta, respeitando a sintaxe do TypeScript.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Adicionar perguntas
+- Adicione um novo item nesse array de objetos, ao dar <kbd>Ctrl</kbd> + <kbd>Espaço</kbd> (ou <kbd>⌘</kbd> + <kbd>Espaço</kbd> no MacOS) no [Visual Studio Code](https://code.visualstudio.com/), o autocomplete irá te ajudar a completar com a ```Object.key``` correta. Você pode copiar uma pergunta já pronta e alterá-la ou criar uma nova lembrando de respeitar a sintaxe do TypeScript para a aplicação não compilar com erros.
