@@ -19,6 +19,7 @@ type ApiResponse = {
 export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) {
 	const [questions, setQuestions] = useState<string[]>([])
 	const [selectedQuestion, setSelectedQuestion] = useState<string>("")
+	const [settingsClicked, setSettingsClicked] = useState<boolean>(false)
 
 	let baseUrl = typeof window !== "undefined" ? `${window.location.protocol}//${window.location.host}` : ""
 	let apiUrl = "/api/questionAndAnswer"
@@ -49,39 +50,57 @@ export default function QuestionLayout<T extends QuestionLayoutProps>(props: T) 
 	}
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className="flex justify-center items-center p-4"
-		>
-			<button className="mr-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-cyan-400">
-				<Icon.Settings className="inline w-6 h-6" />
-			</button>
-			<select
-				className="bg-gray-100 cursor-pointer duration-200 p-1 rounded-l rounded-r w-full outline-none align-middle hover:opacity-60 active:opacity-40"
-				value={selectedQuestion}
-				onChange={event => setSelectedQuestion(event.target.value)}
+		<React.Fragment>
+			<form
+				onSubmit={handleSubmit}
+				className="flex justify-center items-center p-4"
 			>
-				<option
-					disabled
-					value=""
+				<button
+					className="mr-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-cyan-400"
+					onClick={() => setSettingsClicked(previousState => !previousState)}
 				>
-					Pergunte ao Chatbot
-				</option>
-				{questions.map((question, index) => (
+					<Icon.Settings className="inline w-6 h-6" />
+				</button>
+				<select
+					className="bg-gray-100 cursor-pointer duration-200 p-1 rounded-l rounded-r w-full outline-none align-middle hover:opacity-60 active:opacity-40"
+					value={selectedQuestion}
+					onChange={event => setSelectedQuestion(event.target.value)}
+				>
 					<option
-						key={index}
-						value={question}
+						disabled
+						value=""
 					>
-						{question}
+						Pergunte ao Chatbot
 					</option>
-				))}
-			</select>
-			<button
-				type="submit"
-				className="ml-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-lime-400"
-			>
-				<Icon.Arrow className="inline w-6 h-6" />
-			</button>
-		</form>
+					{questions.map((question, index) => (
+						<option
+							key={index}
+							value={question}
+						>
+							{question}
+						</option>
+					))}
+				</select>
+				<button
+					type="submit"
+					className="ml-2 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-lime-400"
+				>
+					<Icon.Arrow className="inline w-6 h-6" />
+				</button>
+			</form>
+
+			{settingsClicked && (
+				<aside className="flex justify-center">
+					<button className="mr-6 outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-yellow-400">
+						<Icon.Sun className="inline w-6 h-6 mr-2 align-middle" />
+						<span>Modo claro</span>
+					</button>
+					<button className="outline-none duration-200 hover:opacity-60 active:opacity-100 active:text-violet-400">
+						<Icon.Moon className="inline w-6 h-6 mr-2 align-middle" />
+						<span>Modo escuro</span>
+					</button>
+				</aside>
+			)}
+		</React.Fragment>
 	)
 }
