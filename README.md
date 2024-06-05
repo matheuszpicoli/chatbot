@@ -117,3 +117,32 @@ const questionsAndAnswers: ModelQuestionAndAnswer[] = [
 
 #### Adicionar perguntas
 - Adicione um novo item nesse array de objetos, ao dar <kbd>Ctrl</kbd> + <kbd>Espaço</kbd> (ou <kbd>⌘</kbd> + <kbd>Espaço</kbd> no MacOS) no [Visual Studio Code](https://code.visualstudio.com/), o autocomplete irá te ajudar a completar com a ```Object.key``` correta. Você pode copiar uma pergunta já pronta e alterá-la ou criar uma nova lembrando de respeitar a sintaxe do TypeScript para a aplicação não compilar com erros.
+
+> **Observações:** é preciso colocar as perguntas e as respostas entre 'aspas simples' ou "aspas duplas", mesmo que for para escrever um número, escreva entre aspas:<br><br>
+> **Certo:**
+> ```TypeScript
+> const questionsAndAnswers: ModelQuestionAndAnswer[] = [
+> 	{
+> 		question: 'Quanto é 1 + 1?',
+> 		answer: '2'
+> 	}
+> ]
+> ```
+> ```TypeScript
+> const questionsAndAnswers: ModelQuestionAndAnswer[] = [
+> 	{
+> 		question: "Quanto é 1 + 1?",
+> 		answer: "2"
+> 	}
+> ]
+> ```
+>**Errado:**
+> ```TypeScript
+> const questionsAndAnswers: ModelQuestionAndAnswer[] = [
+> 	{
+> 		question: "Quanto é 1 + 1?",
+> 		answer: 2
+> 	}
+> ]
+> ```
+><br>
