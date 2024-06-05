@@ -113,7 +113,7 @@ const questionsAndAnswers: ModelQuestionAndAnswer[] = [
 - Basta procurar a pergunta que deseja alterar e mudar para a pergunta alterada, lembre também de mudar a resposta.
 
 #### Remover perguntas
-- Apague as chaves que está ao redor da pergunta, respeitando a sintaxe do TypeScript.
+- Apague as chaves que está ao redor da pergunta e todo o seu conteúdo, respeitando a sintaxe do TypeScript.
 
 #### Adicionar perguntas
 - Adicione um novo item nesse array de objetos, ao dar <kbd>Ctrl</kbd> + <kbd>Espaço</kbd> (ou <kbd>⌘</kbd> + <kbd>Espaço</kbd> no MacOS) no [Visual Studio Code](https://code.visualstudio.com/), o autocomplete irá te ajudar a completar com a ```Object.key``` correta. Você pode copiar uma pergunta já pronta e alterá-la ou criar uma nova lembrando de respeitar a sintaxe do TypeScript para a aplicação não compilar com erros.
