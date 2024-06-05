@@ -10,7 +10,7 @@ type ResponseData = {
 	data: ModelQuestionAndAnswer[]
 }
 
-export const questionsAndAnswers: ModelQuestionAndAnswer[] = [
+const questionsAndAnswers: ModelQuestionAndAnswer[] = [
 	{
 		question: "Qual cidade tem a maior expectativa de vida no mundo?",
 		answer: "Hong Kong"
@@ -332,7 +332,7 @@ export const questionsAndAnswers: ModelQuestionAndAnswer[] = [
 		answer: "Um tipo de vinho tinto"
 	},
 	{
-		question: "Qual dos seguintes molhos NÃO é tradicionalmente vegano: hoisin, worcestershire, mostarda, wasabi?",
+		question: "Qual dos seguintes molhos não é tradicionalmente vegano: hoisin, worcestershire, mostarda, wasabi?",
 		answer: "Worcestershire"
 	},
 	{
